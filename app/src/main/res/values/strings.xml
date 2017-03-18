@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SmartTrolley</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_store_add_item">StoreAddItem</string>
+    <string name="title_activity_store_add_offer">StoreAddOffer</string>
+</resources>

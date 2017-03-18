@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "981487433264",
+    "firebase_url": "https://smart-trolley.firebaseio.com",
+    "project_id": "smart-trolley",
+    "storage_bucket": "smart-trolley.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981487433264:android:7b8451cffbd2c6d4",
+        "android_client_info": {
+          "package_name": "app.smarttrolley.appforyou.smarttrolley"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981487433264-mn4j1deppifgcbo02v74ehun0ssns4ij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.smarttrolley.appforyou.smarttrolley",
+            "certificate_hash": "42a41461a2f2005a0b7e9ec550703bce1b09051c"
+          }
+        },
+        {
+          "client_id": "981487433264-3c19t4805parutafplukr6e4dpvqk49t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSo0D3iyp10oD7kbpxiUEfC95ml2E82k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981487433264-3c19t4805parutafplukr6e4dpvqk49t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
