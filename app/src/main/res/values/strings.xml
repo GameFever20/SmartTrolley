@@ -7,4 +7,13 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_store_add_item">StoreAddItem</string>
     <string name="title_activity_store_add_offer">StoreAddOffer</string>
+    <string name="productid_hint">Enter Product ID</string>
+    <string name="productname_hint">Product NAme</string>
+    <string name="productprice_hint">Product Price</string>
+    <string name="productweight_hint">Product Weight</string>
+    <string name="productquantity_hint">Product Quantity</string>
+    <string name="productexpiry_hint">Product Expiry Date</string>
+    <string name="productbrand_hint">Product Brand</string>
+    <string name="productcategory_hint">Product Category</string>
+    <string name="storeaddItem_addButton_hint">Add Item</string>
 </resources>

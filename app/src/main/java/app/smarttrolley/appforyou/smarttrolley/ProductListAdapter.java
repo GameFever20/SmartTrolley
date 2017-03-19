@@ -1,6 +1,7 @@
 package app.smarttrolley.appforyou.smarttrolley;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,17 +41,18 @@ public class ProductListAdapter extends ArrayAdapter<ProductDetail> {
          textView = (TextView) rowView.findViewById(R.id.productListRow_productcategory_textview);
         textView.setText(productDetailArrayList.get(position).getProductCategory());
          textView = (TextView) rowView.findViewById(R.id.productListRow_productWeight_textview);
-        textView.setText(productDetailArrayList.get(position).getProductWeight());
+        textView.setText(productDetailArrayList.get(position).getProductWeight()+"");
          textView = (TextView) rowView.findViewById(R.id.productListRow_productExpiryDate_textview);
         textView.setText(productDetailArrayList.get(position).getProductExpiryDate());
          textView = (TextView) rowView.findViewById(R.id.productListRow_productID_textview);
         textView.setText(productDetailArrayList.get(position).getProductID());
          textView = (TextView) rowView.findViewById(R.id.productListRow_productPrice_textview);
-        textView.setText(productDetailArrayList.get(position).getProductPrice());
 
+        int price = productDetailArrayList.get(position).getProductPrice()*productDetailArrayList.get(position).getProductQuantity();
 
+        textView.setText(price+"");
 
-
+        
         return rowView;
     }
 }

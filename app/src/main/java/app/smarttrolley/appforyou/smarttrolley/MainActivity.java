@@ -36,6 +36,8 @@ private ListView mListView ;
     private ProductListAdapter mProductListAdapter ;
     private ArrayList<ProductDetail> productDetailArrayList =new ArrayList<>();
 
+    int billingAmount =0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ private ListView mListView ;
         qrScan = new IntentIntegrator(MainActivity.this);
 
 
-        Button btn = (Button) findViewById(R.id.qrbutton);
+        Button btn = (Button) findViewById(R.id.mainqrbutton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +96,6 @@ private ListView mListView ;
                 try {
 
                     String productID = result.getContents();
-                    int num = Integer.valueOf(productID);
                     getproductDetail(productID);
 
                 } catch (Exception e) {
@@ -178,7 +179,8 @@ private ListView mListView ;
 
     private void onStoreClick() {
 
-
+Intent intent =new Intent(this , StoreAddItem.class);
+        startActivity(intent);
 
     }
 
@@ -190,9 +192,19 @@ private ListView mListView ;
             * add price in bill amount
             * give product  suggestion */
 
+            productDetail.setProductQuantity(1);
             productDetailArrayList.add(productDetail);
             mProductListAdapter.notifyDataSetChanged();
+            calculateBillAmount();
         }
+    }
+
+    public void calculateBillAmount(){
+        billingAmount=0;
+        for(ProductDetail productDetail : productDetailArrayList){
+            billingAmount=billingAmount+(productDetail.getProductPrice()*productDetail.getProductQuantity());
+        }
+
     }
 
 
