@@ -2,6 +2,7 @@ package app.smarttrolley.appforyou.smarttrolley;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,10 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -32,11 +35,17 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private IntentIntegrator qrScan;
-private ListView mListView ;
-    private ProductListAdapter mProductListAdapter ;
-    private ArrayList<ProductDetail> productDetailArrayList =new ArrayList<>();
+    private ListView mListView;
+    private ProductListAdapter mProductListAdapter;
+    private ArrayList<ProductDetail> productDetailArrayList = new ArrayList<>();
 
-    int billingAmount =0;
+
+    private ListView mSuggestionListView;
+    private ProductListAdapter mSuggestionProductListAdapter;
+    private ArrayList<ProductDetail> productSuggestionArrayList = new ArrayList<>();
+
+
+    int billingAmount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +54,12 @@ private ListView mListView ;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_item);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                qrScan.initiateScan();
             }
         });
 
@@ -76,9 +85,38 @@ private ListView mListView ;
         });
 
 
-        mListView = (ListView)findViewById(R.id.mainActivity_product_listView);
-        mProductListAdapter =new ProductListAdapter(this,productDetailArrayList);
+        mListView = (ListView) findViewById(R.id.mainActivity_product_listView);
+        mProductListAdapter = new ProductListAdapter(this, productDetailArrayList ,this);
         mListView.setAdapter(mProductListAdapter);
+
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                calculateBillAmount();
+            }
+        });
+
+        View bottomSheet = findViewById(R.id.design_bottom_sheet);
+        final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+
+
+        mSuggestionListView = (ListView) findViewById(R.id.main_bottomSheet_suggestion_listView);
+        mSuggestionProductListAdapter = new ProductListAdapter(this, productSuggestionArrayList ,this);
+        mSuggestionListView.setAdapter(mSuggestionProductListAdapter);
+        mSuggestionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!checkProductIDInList(productSuggestionArrayList.get(i).getProductID(), productDetailArrayList)) {
+                    productDetailArrayList.add(productSuggestionArrayList.get(i));
+                    productSuggestionArrayList.remove(i);
+                    mProductListAdapter.notifyDataSetChanged();
+                    mSuggestionProductListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+
 
     }
 
@@ -114,8 +152,25 @@ private ListView mListView ;
     }
 
     private void getproductDetail(String productID) {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-        databaseHandler.getProductByID(productID, this);
+        if (!checkProductIDInList(productID, productDetailArrayList)) {
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            databaseHandler.getProductByID(productID, this);
+        } else {
+            Toast.makeText(this, "product Already added", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkProductIDInList(String productID, ArrayList<ProductDetail> productDetaillist) {
+
+        for (ProductDetail productDetail : productDetaillist) {
+
+            if (productDetail.getProductID().equalsIgnoreCase(productID)) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
 
@@ -161,8 +216,10 @@ private ListView mListView ;
             onStoreClick();
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            onStoreofferClick();
 
         } else if (id == R.id.nav_slideshow) {
+            onStoreuserOfferClick();
 
         } else if (id == R.id.nav_manage) {
 
@@ -177,9 +234,19 @@ private ListView mListView ;
         return true;
     }
 
+    private void onStoreofferClick() {
+        Intent intent = new Intent(this, StoreAddOffer.class);
+        startActivity(intent);
+    }
+
+    private void onStoreuserOfferClick() {
+        Intent intent = new Intent(this, OfferActivity.class);
+        startActivity(intent);
+    }
+
     private void onStoreClick() {
 
-Intent intent =new Intent(this , StoreAddItem.class);
+        Intent intent = new Intent(this, StoreAddItem.class);
         startActivity(intent);
 
     }
@@ -196,16 +263,44 @@ Intent intent =new Intent(this , StoreAddItem.class);
             productDetailArrayList.add(productDetail);
             mProductListAdapter.notifyDataSetChanged();
             calculateBillAmount();
+
+            DatabaseHandler db = new DatabaseHandler();
+            db.getProductListOfCategory(productDetail.getProductCategory(), this);
         }
     }
 
-    public void calculateBillAmount(){
-        billingAmount=0;
-        for(ProductDetail productDetail : productDetailArrayList){
-            billingAmount=billingAmount+(productDetail.getProductPrice()*productDetail.getProductQuantity());
+    public void calculateBillAmount() {
+        billingAmount = 0;
+        for (ProductDetail productDetail : productDetailArrayList) {
+            billingAmount = billingAmount + (productDetail.getProductPrice() * productDetail.getProductQuantity());
         }
 
     }
 
 
+    public void getProductListOfCategorylistner(ArrayList<ProductDetail> productDetailArrayList) {
+
+        for (ProductDetail pd : productDetailArrayList) {
+            if (!checkProductIDInList(pd.getProductID(), productSuggestionArrayList)) {
+                productSuggestionArrayList.add(0, pd);
+            }
+        }
+
+        mSuggestionProductListAdapter.notifyDataSetChanged();
+
+    }
+
+    public void suggestionListItemClickListner(int position) {
+
+        if (!checkProductIDInList(productSuggestionArrayList.get(position).getProductID(), productDetailArrayList)) {
+            productSuggestionArrayList.get(position).setProductQuantity(1);
+            productDetailArrayList.add(productSuggestionArrayList.get(position));
+            productSuggestionArrayList.remove(position);
+            mProductListAdapter.notifyDataSetChanged();
+            mSuggestionProductListAdapter.notifyDataSetChanged();
+        }else{
+            Toast.makeText(this, "Already in cart", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }

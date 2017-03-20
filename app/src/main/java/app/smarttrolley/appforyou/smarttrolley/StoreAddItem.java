@@ -126,9 +126,9 @@ public class StoreAddItem extends AppCompatActivity {
         }
 
 
-         products = productCategoryEditText.getText().toString();
+         products = productCategoryEditText.getText().toString().trim();
         if(products.length() >2){
-            productDetail.setProductCategory(products+"");
+            productDetail.setProductCategory(products);
         }
 
         DatabaseHandler databasehandler = new DatabaseHandler();

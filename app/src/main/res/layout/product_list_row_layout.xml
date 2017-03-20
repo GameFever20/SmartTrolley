@@ -1,129 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     app:cardCornerRadius="4dp">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Brand"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
 
-            <LinearLayout
+                />
+
+            <TextView
+                android:id="@+id/productListRow_productcategory_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="end"
+                android:text="Product category"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="12sp"
 
-                <TextView
-                    android:id="@+id/productListRow_productBrand_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Product Brand"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-
-                    />
-
-                <TextView
-                    android:id="@+id/productListRow_productcategory_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="Product category"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-
-                    />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/productListRow_productName_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Product Name"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-
-                    />
-
-                <TextView
-                    android:id="@+id/productListRow_productPrice_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:text="100RS"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-
-
-                    />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/productListRow_productWeight_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="Product weight"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/productListRow_productExpiryDate_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="Product Expiry"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/productListRow_productID_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="Product id"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-
-            </LinearLayout>
+                />
 
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Product Name"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:text="100RS"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+
+
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Product weight"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/productListRow_productExpiryDate_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Product Expiry"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Product id"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="8sp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/productListRow_productName_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRoduct Name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productListRow_productName_textview"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/productListRow_productPrice_textview"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/productprice_hint"
+                    android:textColor="#fa3b3b"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/productListRow_productWeight_textview"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/productweight_hint" />
+
+                <TextView
+                    android:id="@+id/productListRow_productID_textview"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/productid_hint" />
+
+
+
+
+            </LinearLayout>
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productListRow_productquantityminus_button"
+                android:src="@mipmap/ic_launcher"
+                tools:background="#00000000"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="10"
+                android:id="@+id/productListRow_productquantity_textView"
+
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productListRow_productquantityadd_button"
+
+                tools:src="@android:drawable/ic_menu_add"
+                tools:background="#00000000" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/productListRow_productBrand_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="By Brand Name"
+            android:textAlignment="center"
+
+
+            />
+
+
+    </LinearLayout>
 
 
 </android.support.v7.widget.CardView>

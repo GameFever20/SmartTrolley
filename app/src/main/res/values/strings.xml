@@ -16,4 +16,6 @@
     <string name="productbrand_hint">Product Brand</string>
     <string name="productcategory_hint">Product Category</string>
     <string name="storeaddItem_addButton_hint">Add Item</string>
+    <string name="title_activity_offer">OfferActivity</string>
+    <string name="offerHeading_hint">Offer HEading</string>
 </resources>

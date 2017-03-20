@@ -25,6 +25,10 @@
         <activity
             android:name=".StoreAddOffer"
             android:label="@string/title_activity_store_add_offer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OfferActivity"
+            android:label="@string/title_activity_offer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
