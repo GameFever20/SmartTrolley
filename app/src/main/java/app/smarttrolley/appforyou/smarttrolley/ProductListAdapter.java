@@ -46,7 +46,7 @@ public class ProductListAdapter extends ArrayAdapter<ProductDetail>  {
         textView = (TextView) rowView.findViewById(R.id.productListRow_productBrand_textview);
         textView.setText(productDetailArrayList.get(position).getProductBrand());
         textView = (TextView) rowView.findViewById(R.id.productListRow_productWeight_textview);
-        textView.setText(productDetailArrayList.get(position).getProductWeight() + "");
+        textView.setText(productDetailArrayList.get(position).getProductWeight() +" in gm");
         textView = (TextView) rowView.findViewById(R.id.productListRow_productID_textview);
         textView.setText(productDetailArrayList.get(position).getProductID());
 
@@ -61,7 +61,7 @@ public class ProductListAdapter extends ArrayAdapter<ProductDetail>  {
         final TextView quatitytextView = (TextView) rowView.findViewById(R.id.productListRow_productquantity_textView);
         quatitytextView.setText(productDetailArrayList.get(position).getProductQuantity() + "");
 
-        ImageButton minusButton = (ImageButton) rowView.findViewById(R.id.productListRow_productquantityminus_button);
+        Button minusButton = (Button) rowView.findViewById(R.id.productListRow_productquantityminus_button);
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +75,7 @@ public class ProductListAdapter extends ArrayAdapter<ProductDetail>  {
                     productDetailArrayList.get(position).setProductQuantity(newquantity);
                     notifyDataSetChanged();
                 }
+                mainActivity.calculateBillAmount();
 
             }
         });
@@ -93,7 +94,7 @@ if( productDetailArrayList.get(position).getProductQuantity() <1) {
 }
 
 
-        ImageButton addButton = (ImageButton) rowView.findViewById(R.id.productListRow_productquantityadd_button);
+        Button addButton = (Button) rowView.findViewById(R.id.productListRow_productquantityadd_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +113,7 @@ if( productDetailArrayList.get(position).getProductQuantity() <1) {
                 quatitytextView.setText(String.valueOf(newquantity));
                 productDetailArrayList.get(position).setProductQuantity(newquantity);
                 notifyDataSetChanged();
+                mainActivity.calculateBillAmount();
 
             }
         });

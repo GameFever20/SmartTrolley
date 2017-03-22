@@ -17,8 +17,10 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.text.Text;
 import com.google.firebase.database.DataSnapshot;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity
     private ProductListAdapter mSuggestionProductListAdapter;
     private ArrayList<ProductDetail> productSuggestionArrayList = new ArrayList<>();
 
+    TextView total_amount_textview;
+
 
     int billingAmount = 0;
 
@@ -58,10 +62,26 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 qrScan.initiateScan();
+                Toast.makeText(MainActivity.this, "scanning", Toast.LENGTH_SHORT).show();
+
             }
         });
+
+
+        FloatingActionButton fab_done_btn = (FloatingActionButton) findViewById(R.id.fab_done_item);
+        fab_done_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EbillPaymentActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        total_amount_textview=(TextView)findViewById(R.id.main_total_amount_textview);
+        total_amount_textview.setText(""+billingAmount);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -85,8 +105,9 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+
         mListView = (ListView) findViewById(R.id.mainActivity_product_listView);
-        mProductListAdapter = new ProductListAdapter(this, productDetailArrayList ,this);
+        mProductListAdapter = new ProductListAdapter(this, productDetailArrayList, this);
         mListView.setAdapter(mProductListAdapter);
 
 
@@ -95,6 +116,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 calculateBillAmount();
+
             }
         });
 
@@ -103,7 +125,7 @@ public class MainActivity extends AppCompatActivity
 
 
         mSuggestionListView = (ListView) findViewById(R.id.main_bottomSheet_suggestion_listView);
-        mSuggestionProductListAdapter = new ProductListAdapter(this, productSuggestionArrayList ,this);
+        mSuggestionProductListAdapter = new ProductListAdapter(this, productSuggestionArrayList, this);
         mSuggestionListView.setAdapter(mSuggestionProductListAdapter);
         mSuggestionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -196,12 +218,6 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -212,23 +228,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_store) {
-            onStoreClick();
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            onStoreofferClick();
-
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_Offers) {
             onStoreuserOfferClick();
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_shopkeeper_menu) {
+            onShopkeeperActivityCall();
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -266,6 +272,8 @@ public class MainActivity extends AppCompatActivity
 
             DatabaseHandler db = new DatabaseHandler();
             db.getProductListOfCategory(productDetail.getProductCategory(), this);
+            total_amount_textview.setText(""+billingAmount);
+
         }
     }
 
@@ -274,9 +282,16 @@ public class MainActivity extends AppCompatActivity
         for (ProductDetail productDetail : productDetailArrayList) {
             billingAmount = billingAmount + (productDetail.getProductPrice() * productDetail.getProductQuantity());
         }
+        total_amount_textview.setText(""+billingAmount);
+
 
     }
 
+    public void onShopkeeperActivityCall(){
+        Intent intent = new Intent(this, ShopkeeperActivity.class);
+        startActivity(intent);
+
+    }
 
     public void getProductListOfCategorylistner(ArrayList<ProductDetail> productDetailArrayList) {
 
@@ -298,7 +313,7 @@ public class MainActivity extends AppCompatActivity
             productSuggestionArrayList.remove(position);
             mProductListAdapter.notifyDataSetChanged();
             mSuggestionProductListAdapter.notifyDataSetChanged();
-        }else{
+        } else {
             Toast.makeText(this, "Already in cart", Toast.LENGTH_SHORT).show();
         }
 

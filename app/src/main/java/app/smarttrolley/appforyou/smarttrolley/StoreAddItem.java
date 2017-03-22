@@ -30,14 +30,6 @@ public class StoreAddItem extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
 
         qrScan = new IntentIntegrator(StoreAddItem.this);
@@ -47,8 +39,6 @@ public class StoreAddItem extends AppCompatActivity {
         productCategoryEditText =(EditText)findViewById(R.id.storeAddItem_productcategory_edittext);
         productPriceEditText =(EditText)findViewById(R.id.storeAddItem_productprice_edittext);
         productWeightEditText =(EditText)findViewById(R.id.storeAddItem_productweight_edittext);
-        productQuantityEditText =(EditText)findViewById(R.id.storeAddItem_productquantity_edittext);
-        productExpiryEditText =(EditText)findViewById(R.id.storeAddItem_productexpiry_edittext);
         productBrandEditText =(EditText)findViewById(R.id.storeAddItem_productbrand_edittext);
 
 
@@ -97,26 +87,14 @@ public class StoreAddItem extends AppCompatActivity {
         if(!products.isEmpty()){
             productDetail.setProductWeight(Integer.valueOf(products));
         }else{
-
-        }
-
-
-         products = productQuantityEditText.getText().toString();
-        if(!products.isEmpty()){
-            productDetail.setProductQuantity(Integer.valueOf(products));
-        }else{
-            Toast.makeText(this, "Product Quantity Missing", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-         products = productExpiryEditText.getText().toString();
-        if(products.length() >2){
-            productDetail.setProductExpiryDate(products);
-        }
 
 
-         products = productBrandEditText.getText().toString();
+
+        products = productBrandEditText.getText().toString();
         if(products.length() >2){
             productDetail.setProductBrand(products+"");
         }else
@@ -136,6 +114,12 @@ public class StoreAddItem extends AppCompatActivity {
 
         Toast.makeText(this, "Product added to store", Toast.LENGTH_SHORT).show();
 
+        productIDEditText.setText("");
+        productNameEditText.setText("");
+        productCategoryEditText.setText("");
+        productPriceEditText.setText("");
+        productWeightEditText.setText("");
+        productBrandEditText.setText("");
 
 
 

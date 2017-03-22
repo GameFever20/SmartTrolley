@@ -29,7 +29,7 @@
         android:id="@+id/design_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:background="@color/colorAccent"
+        android:background="@color/lightgray"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="Suggestions"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/red"
             android:textSize="18sp" />
 
 
@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:id="@+id/main_bottomSheet_suggestion_listView"
             android:nestedScrollingEnabled="true"
+            android:background="@color/red"
             android:layout_height="match_parent">
 
         </ListView>
@@ -66,13 +67,25 @@
 
     <!--Fab button for add-->
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_item"
+        android:id="@+id/fab_done_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginRight="300dp"
         app:layout_anchor="@+id/design_bottom_sheet"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_item"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/design_bottom_sheet"
+        app:layout_anchorGravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+
+        app:srcCompat="@android:drawable/ic_menu_add"
+       />
+
 
 
 </android.support.design.widget.CoordinatorLayout>

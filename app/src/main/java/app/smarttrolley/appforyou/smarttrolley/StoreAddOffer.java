@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,6 +15,8 @@ import utils.OfferDetail;
 
 public class StoreAddOffer extends AppCompatActivity {
 
+   Button store_add_offer_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +24,10 @@ public class StoreAddOffer extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        store_add_offer_btn=(Button)findViewById(R.id.store_add_offer_btn);
+        store_add_offer_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 EditText editText =(EditText)findViewById(R.id.storeAddoffer_offerHeading_edittext);
                 String heading = editText.getText().toString();
                 editText =(EditText)findViewById(R.id.storeAddoffer_offersection_edittext);
@@ -35,6 +36,8 @@ public class StoreAddOffer extends AppCompatActivity {
                 OfferDetail offerDetail =new OfferDetail();
                 if(heading.length()>3){
                     offerDetail.setOfferHEading(heading);
+                    Toast.makeText(StoreAddOffer.this, "Offer is set", Toast.LENGTH_SHORT).show();
+
                 }else{
                     Toast.makeText(StoreAddOffer.this, "Offer Heading lenght is small", Toast.LENGTH_SHORT).show();
                     return;
@@ -42,17 +45,31 @@ public class StoreAddOffer extends AppCompatActivity {
 
                 if(section.length()>2){
                     offerDetail.setOfferSection(section);
+
                 }else{
                     Toast.makeText(StoreAddOffer.this, "Offer Section lenght is small", Toast.LENGTH_SHORT).show();
+
                     return;
                 }
 
                 DatabaseHandler db =new DatabaseHandler();
                 db.insertOffer(offerDetail);
+                editText.setText("");
+
+            }
+        });
+
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
 
 
             }
         });
+        */
 
 
     }

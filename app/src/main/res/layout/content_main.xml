@@ -10,21 +10,52 @@
     tools:context="app.smarttrolley.appforyou.smarttrolley.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearl"
+        android:background="@color/red"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Total amount"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_total_amount_textview"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="160dp"
+            android:text="amount"/>
+
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/mainActivity_product_listView"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/mainqrbutton"
+        android:layout_below="@+id/linearl"
+        android:background="@color/lightgray"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </ListView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/mainqrbutton"
+        android:visibility="gone"
         />
 
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_above="@id/mainqrbutton"
-        android:id="@+id/mainActivity_product_listView"
-        android:layout_height="match_parent">
-
-    </ListView>
 
 
 

@@ -4,13 +4,6 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/offerList_offerHeading_textview"
-        android:text="Offer HEading"
-        android:textSize="18sp"
-        />
 
 
     <TextView
@@ -18,8 +11,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/offerList_offerSection_textview"
         android:text="Offer section"
-        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="@color/red"
+
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:id="@+id/offerList_offerHeading_textview"
+        android:text="Offer Heading"
+         />
+
 
 
 </LinearLayout>

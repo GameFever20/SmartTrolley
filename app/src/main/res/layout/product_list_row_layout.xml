@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="4dp">
+    android:layout_margin="50dp"
+    android:layout_marginTop="200dp"
+    android:layout_marginLeft="400dp"
+    android:layout_marginRight="400dp"
+    android:layout_marginBottom="220dp"
+    app:cardCornerRadius="1dp"
+    app:cardBackgroundColor="@color/white">
 
 
     <LinearLayout
@@ -69,7 +74,7 @@
                 android:text="100RS"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="25sp"
 
 
                 />
@@ -131,92 +136,135 @@
             android:id="@+id/productListRow_productName_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PRoduct Name"
+            android:text="PRODUCT NAME"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:textSize="18sp"
 
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="37dp"
             android:layout_below="@id/productListRow_productName_textview"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
 
 
-                <TextView
+
+                <LinearLayout
+                    android:layout_width="285dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                  <TextView
                     android:id="@+id/productListRow_productPrice_textview"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/productprice_hint"
-                    android:textColor="#fa3b3b"
-                    android:textSize="16sp" />
+                      android:textStyle="bold"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/productListRow_productWeight_textview"
+                    <TextView
+                        android:id="@+id/productListRow_productBrand_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="By Brand Name"
+                        android:textAlignment="center"
+                        android:textStyle="normal"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/productweight_hint" />
 
-                <TextView
-                    android:id="@+id/productListRow_productID_textview"
+                        />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/productid_hint" />
+                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/productListRow_productID_textview"
+                        android:text="@string/productid_hint"
+                        android:layout_width="286dp"
+                        android:layout_height="wrap_content" />
 
 
 
 
             </LinearLayout>
 
+        </LinearLayout>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/productListRow_productquantityminus_button"
-                android:src="@mipmap/ic_launcher"
-                tools:background="#00000000"
-                 />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/productListRow_productWeight_textview"
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="10"
-                android:id="@+id/productListRow_productquantity_textView"
+                android:text="@string/productweight_hint" />
 
-                android:textSize="20sp" />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="1dp"
+                app:cardBackgroundColor="@color/red"
+                >
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/productListRow_productquantityadd_button"
-
-                tools:src="@android:drawable/ic_menu_add"
-                tools:background="#00000000" />
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/productListRow_productBrand_textview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="By Brand Name"
-            android:textAlignment="center"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
 
-            />
+            <Button
+                android:layout_width="26dp"
+                android:layout_height="match_parent"
+                android:id="@+id/productListRow_productquantityminus_button"
+                android:background="@android:drawable/ic_input_delete"
+                android:backgroundTint="@color/red" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="10"
+                android:textAlignment="center"
+                android:id="@+id/productListRow_productquantity_textView"
+                android:textSize="20sp" />
+
+            <Button
+                android:layout_width="26dp"
+                android:layout_height="match_parent"
+                android:id="@+id/productListRow_productquantityadd_button"
+                android:background="@android:drawable/ic_input_add"
+                android:backgroundTint="@color/red"/>
+
+
+        </LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/red">
+
+        </android.support.v7.widget.CardView>
+
 
 
     </LinearLayout>

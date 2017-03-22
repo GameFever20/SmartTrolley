@@ -13,6 +13,24 @@
     tools:context="app.smarttrolley.appforyou.smarttrolley.OfferActivity"
     tools:showIn="@layout/activity_offer">
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grab Offers Now !"
+        android:textColor="@color/red"
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textAlignment="center"
+        android:textStyle="italic|bold"/>
+
+
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/offerActivity_offer_listView"
@@ -21,5 +39,6 @@
 
 
     </ListView>
+   </LinearLayout>
 
 </RelativeLayout>

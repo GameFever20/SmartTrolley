@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,6 @@ public class OfferActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DatabaseHandler db =new DatabaseHandler();
         db.getOfferList(this);
@@ -42,6 +35,8 @@ public class OfferActivity extends AppCompatActivity {
 
     public void getOfferListListner(ArrayList<OfferDetail> offerDetailArrayList) {
         this.offerDetailArrayList =offerDetailArrayList;
+        Toast.makeText(this, "Name of offerlist"+offerDetailArrayList.get(4).toString(), Toast.LENGTH_SHORT).show();
+
         offerListView =(ListView) findViewById(R.id.offerActivity_offer_listView);
         offerListAdapter =new OfferListAdapter(this ,this.offerDetailArrayList);
         offerListView.setAdapter(offerListAdapter);

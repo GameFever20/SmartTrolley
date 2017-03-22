@@ -5,7 +5,12 @@ package utils;
  */
 
 public class ProductDetail {
-    private String productID , productName, productExpiryDate, productBrand, productCategory;
+    private String productID;
+    private String productName;
+    private String productExpiryDate;
+    private String productBrand;
+    private String productCategory;
+
 
     int productPrice ,productQuantity ,productWeight;
 
