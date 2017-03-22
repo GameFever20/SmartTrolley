@@ -30,18 +30,20 @@ public class StoreAddOffer extends AppCompatActivity {
             public void onClick(View view) {
                 EditText editText =(EditText)findViewById(R.id.storeAddoffer_offerHeading_edittext);
                 String heading = editText.getText().toString();
-                editText =(EditText)findViewById(R.id.storeAddoffer_offersection_edittext);
-                String section =editText.getText().toString();
 
                 OfferDetail offerDetail =new OfferDetail();
                 if(heading.length()>3){
                     offerDetail.setOfferHEading(heading);
-                    Toast.makeText(StoreAddOffer.this, "Offer is set", Toast.LENGTH_SHORT).show();
 
+                    editText.setText("");
                 }else{
                     Toast.makeText(StoreAddOffer.this, "Offer Heading lenght is small", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                editText =(EditText)findViewById(R.id.storeAddoffer_offersection_edittext);
+                String section =editText.getText().toString();
+
 
                 if(section.length()>2){
                     offerDetail.setOfferSection(section);
@@ -55,6 +57,7 @@ public class StoreAddOffer extends AppCompatActivity {
                 DatabaseHandler db =new DatabaseHandler();
                 db.insertOffer(offerDetail);
                 editText.setText("");
+                Toast.makeText(StoreAddOffer.this, "Offer is posted", Toast.LENGTH_SHORT).show();
 
             }
         });

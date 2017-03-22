@@ -8,30 +8,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="291dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Add More Items "
             android:id="@+id/shopkeeper_addmore_item_btn"
             android:onClick="shopkeeperAddMoreItemFunction"
             android:textColor="@color/white"
             android:textSize="35sp"
-            android:background="#37a90e"/>
+            android:background="@color/colorPrimary"/>
 
 
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="314dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Add Offers"
             android:id="@+id/shopkeeper_addmore_offer_btn"
             android:onClick="shopkeeperAddMoreOfferFunction"
             android:textSize="35sp"
             android:textColor="@color/white"
-            android:background="#d4a60e"/>
+            android:background="@color/colorPrimary"/>
     </LinearLayout>
 
 </RelativeLayout>

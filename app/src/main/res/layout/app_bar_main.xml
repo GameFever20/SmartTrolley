@@ -47,13 +47,13 @@
             android:text="Suggestions"
             android:textAlignment="center"
             android:textColor="@color/red"
+            android:onClick="openBottomBar"
             android:textSize="18sp" />
 
 
         <ListView
             android:layout_width="match_parent"
             android:id="@+id/main_bottomSheet_suggestion_listView"
-            android:nestedScrollingEnabled="true"
             android:background="@color/red"
             android:layout_height="match_parent">
 
@@ -73,7 +73,7 @@
         android:layout_marginRight="300dp"
         app:layout_anchor="@+id/design_bottom_sheet"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+        app:srcCompat="@drawable/ic_action_done" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_item"
@@ -83,7 +83,7 @@
         app:layout_anchorGravity="top|end"
         android:layout_margin="@dimen/fab_margin"
 
-        app:srcCompat="@android:drawable/ic_menu_add"
+        app:srcCompat="@drawable/ic_action_add"
        />
 
 
