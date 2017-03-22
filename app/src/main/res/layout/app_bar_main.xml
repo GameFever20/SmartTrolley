@@ -40,25 +40,40 @@
 
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <TextView
-            android:id="@+id/bottomsheet_text"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Suggestions"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-
-
-        <ListView
-            android:layout_width="match_parent"
-            android:id="@+id/main_bottomSheet_suggestion_listView"
-            android:nestedScrollingEnabled="true"
             android:layout_height="match_parent">
 
-        </ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
 
 
+                <TextView
+                    android:id="@+id/bottomsheet_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggestions"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+
+                <ListView
+                    android:id="@+id/main_bottomSheet_suggestion_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:nestedScrollingEnabled="true"
+                    >
+
+                </ListView>
+
+
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
 
 
     </LinearLayout>

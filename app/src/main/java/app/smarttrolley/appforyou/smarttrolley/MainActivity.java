@@ -90,13 +90,7 @@ public class MainActivity extends AppCompatActivity
         mListView.setAdapter(mProductListAdapter);
 
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                calculateBillAmount();
-            }
-        });
 
         View bottomSheet = findViewById(R.id.design_bottom_sheet);
         final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
@@ -200,6 +194,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -274,6 +269,7 @@ public class MainActivity extends AppCompatActivity
         for (ProductDetail productDetail : productDetailArrayList) {
             billingAmount = billingAmount + (productDetail.getProductPrice() * productDetail.getProductQuantity());
         }
+        Toast.makeText(this, "bill amount = " +billingAmount, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -282,7 +278,10 @@ public class MainActivity extends AppCompatActivity
 
         for (ProductDetail pd : productDetailArrayList) {
             if (!checkProductIDInList(pd.getProductID(), productSuggestionArrayList)) {
+                if(!checkProductIDInList(pd.getProductID() , productDetailArrayList))
                 productSuggestionArrayList.add(0, pd);
+                mSuggestionProductListAdapter.notifyDataSetChanged();
+                return;
             }
         }
 
@@ -298,6 +297,7 @@ public class MainActivity extends AppCompatActivity
             productSuggestionArrayList.remove(position);
             mProductListAdapter.notifyDataSetChanged();
             mSuggestionProductListAdapter.notifyDataSetChanged();
+
         }else{
             Toast.makeText(this, "Already in cart", Toast.LENGTH_SHORT).show();
         }

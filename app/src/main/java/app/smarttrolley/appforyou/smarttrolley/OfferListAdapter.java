@@ -42,6 +42,7 @@ public class OfferListAdapter extends ArrayAdapter<OfferDetail> {
 
 
 
+
         return rowView;
     }
 }

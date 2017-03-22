@@ -75,6 +75,7 @@ public class ProductListAdapter extends ArrayAdapter<ProductDetail>  {
                     productDetailArrayList.get(position).setProductQuantity(newquantity);
                     notifyDataSetChanged();
                 }
+                mainActivity.calculateBillAmount();
 
             }
         });
@@ -112,6 +113,7 @@ if( productDetailArrayList.get(position).getProductQuantity() <1) {
                 quatitytextView.setText(String.valueOf(newquantity));
                 productDetailArrayList.get(position).setProductQuantity(newquantity);
                 notifyDataSetChanged();
+                mainActivity.calculateBillAmount();
 
             }
         });
