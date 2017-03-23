@@ -58,13 +58,13 @@ public class StoreAddItem extends AppCompatActivity {
 
         ProductDetail productDetail = new ProductDetail();
 
-        String products = productIDEditText.getText().toString();
+        String products = productIDEditText.getText().toString().trim().toUpperCase();
         if(products.length() >2){
             productDetail.setProductID(products);
         }
 
 
-         products = productNameEditText.getText().toString();
+         products = productNameEditText.getText().toString().trim().toUpperCase();
         if(products.length() >2){
             productDetail.setProductName(products);
         }else{
@@ -73,7 +73,7 @@ public class StoreAddItem extends AppCompatActivity {
         }
 
 
-         products = productPriceEditText.getText().toString();
+         products = productPriceEditText.getText().toString().trim().toUpperCase();
         if(!products.isEmpty()){
             productDetail.setProductPrice(Integer.valueOf(products));
         }else{
@@ -83,7 +83,7 @@ public class StoreAddItem extends AppCompatActivity {
         }
 
 
-         products = productWeightEditText.getText().toString();
+         products = productWeightEditText.getText().toString().trim().toUpperCase();
         if(!products.isEmpty()){
             productDetail.setProductWeight(Integer.valueOf(products));
         }else{
@@ -94,7 +94,7 @@ public class StoreAddItem extends AppCompatActivity {
 
 
 
-        products = productBrandEditText.getText().toString();
+        products = productBrandEditText.getText().toString().trim().toUpperCase();
         if(products.length() >2){
             productDetail.setProductBrand(products+"");
         }else
@@ -104,7 +104,7 @@ public class StoreAddItem extends AppCompatActivity {
         }
 
 
-         products = productCategoryEditText.getText().toString().trim();
+         products = productCategoryEditText.getText().toString().trim().trim().toUpperCase();
         if(products.length() >2){
             productDetail.setProductCategory(products);
         }

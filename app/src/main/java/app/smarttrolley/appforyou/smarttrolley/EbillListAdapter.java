@@ -38,8 +38,13 @@ public class EbillListAdapter extends ArrayAdapter<ProductDetail> {
 
         nameTextView = (TextView)rowView.findViewById(R.id.ebill_row_price_textview);
         nameTextView.setText(productDetailArrayList.get(position).getProductPrice()+"");
+
         nameTextView = (TextView)rowView.findViewById(R.id.ebill_row_weight_textview);
         nameTextView.setText(productDetailArrayList.get(position).getProductWeight()+"");
+
+        nameTextView=(TextView)rowView.findViewById(R.id.ebill_row_quantity_textview);
+        nameTextView.setText(productDetailArrayList.get(position).getProductQuantity()+"");
+
 
 
 
