@@ -5,11 +5,11 @@
 
         <item
             android:id="@+id/nav_Offers"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_action_offer"
             android:title="Check Offers" />
         <item
             android:id="@+id/nav_shopkeeper_menu"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_action_shopper"
             android:title="ShopKeeper Menu" />
     </group>
 

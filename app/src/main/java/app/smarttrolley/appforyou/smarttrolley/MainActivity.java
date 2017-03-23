@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     private IntentIntegrator qrScan;
     private ListView mListView;
     private ProductListAdapter mProductListAdapter;
-    private ArrayList<ProductDetail> productDetailArrayList = new ArrayList<>();
+    public static ArrayList<ProductDetail> productDetailArrayList = new ArrayList<>();
 
 
     private ListView mSuggestionListView;
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity
 
     TextView total_amount_textview;
 
-
-    int billingAmount = 0;
+    BottomSheetBehavior behavior;
+    public static int  billingAmount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        total_amount_textview=(TextView)findViewById(R.id.main_total_amount_textview);
-        total_amount_textview.setText(""+billingAmount);
+        total_amount_textview = (TextView) findViewById(R.id.main_total_amount_textview);
+        total_amount_textview.setText("" + billingAmount);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
         mListView = (ListView) findViewById(R.id.mainActivity_product_listView);
         mProductListAdapter = new ProductListAdapter(this, productDetailArrayList, this);
         mListView.setAdapter(mProductListAdapter);
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         View bottomSheet = findViewById(R.id.design_bottom_sheet);
-        final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+          behavior = BottomSheetBehavior.from(bottomSheet);
 
 
         mSuggestionListView = (ListView) findViewById(R.id.main_bottomSheet_suggestion_listView);
@@ -142,6 +141,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    public void openBottomBar(View view){
+
+        if(behavior.getState() == BottomSheetBehavior.STATE_COLLAPSED){
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
+    }
 
     //Getting the scan results
     @Override
@@ -260,7 +266,7 @@ public class MainActivity extends AppCompatActivity
 
     public void getProductByIDListner(ProductDetail productDetail) {
         if (productDetail != null) {
-            Toast.makeText(this, "product is " + productDetail.toString(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "product is " + productDetail.toString(), Toast.LENGTH_SHORT).show();
             /*show in ui
             * add price in bill amount
             * give product  suggestion */
@@ -272,7 +278,7 @@ public class MainActivity extends AppCompatActivity
 
             DatabaseHandler db = new DatabaseHandler();
             db.getProductListOfCategory(productDetail.getProductCategory(), this);
-            total_amount_textview.setText(""+billingAmount);
+            total_amount_textview.setText("" + billingAmount);
 
         }
     }
@@ -282,12 +288,12 @@ public class MainActivity extends AppCompatActivity
         for (ProductDetail productDetail : productDetailArrayList) {
             billingAmount = billingAmount + (productDetail.getProductPrice() * productDetail.getProductQuantity());
         }
-        total_amount_textview.setText(""+billingAmount);
+        total_amount_textview.setText("" + billingAmount);
 
 
     }
 
-    public void onShopkeeperActivityCall(){
+    public void onShopkeeperActivityCall() {
         Intent intent = new Intent(this, ShopkeeperActivity.class);
         startActivity(intent);
 
@@ -297,7 +303,11 @@ public class MainActivity extends AppCompatActivity
 
         for (ProductDetail pd : productDetailArrayList) {
             if (!checkProductIDInList(pd.getProductID(), productSuggestionArrayList)) {
-                productSuggestionArrayList.add(0, pd);
+                if (!checkProductIDInList(pd.getProductID(),this.productDetailArrayList)) {
+                    productSuggestionArrayList.add(0, pd);
+                    mSuggestionProductListAdapter.notifyDataSetChanged();
+                    return;
+                }
             }
         }
 

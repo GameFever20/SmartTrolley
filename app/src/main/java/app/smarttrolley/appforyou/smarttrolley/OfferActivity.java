@@ -35,7 +35,7 @@ public class OfferActivity extends AppCompatActivity {
 
     public void getOfferListListner(ArrayList<OfferDetail> offerDetailArrayList) {
         this.offerDetailArrayList =offerDetailArrayList;
-        Toast.makeText(this, "Name of offerlist"+offerDetailArrayList.get(4).toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Name of offerlist"+offerDetailArrayList.get(4).toString(), Toast.LENGTH_SHORT).show();
 
         offerListView =(ListView) findViewById(R.id.offerActivity_offer_listView);
         offerListAdapter =new OfferListAdapter(this ,this.offerDetailArrayList);

@@ -70,7 +70,7 @@ public class DatabaseHandler {
 
         DatabaseReference myref =database.getReference("product");
 
-        Query myref2= myref.orderByChild("productCategory").equalTo(category).limitToLast(5);
+        Query myref2= myref.orderByChild("productCategory").equalTo(category).limitToLast(3);
 
         myref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
