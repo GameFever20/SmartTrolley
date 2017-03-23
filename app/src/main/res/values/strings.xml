@@ -20,4 +20,5 @@
     <string name="offerHeading_hint">Offer Details</string>
     <string name="offerSection_hint">Offer Section</string>
     <string name="title_activity_thank_you">ThankYouActivity</string>
+    <string name="Enter_shopkeeper_password">ShopkeeperPassword</string>
 </resources>

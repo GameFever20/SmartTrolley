@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onShopkeeperActivityCall() {
-        Intent intent = new Intent(this, ShopkeeperActivity.class);
+        Intent intent = new Intent(this, ShopkeeperPassword.class);
         startActivity(intent);
 
     }
